@@ -1,0 +1,50 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+
+<div class="container my-3">
+    <h1> {{ heading }} </h1>
+    <ul class="note-list">
+    {% for note in notes %}
+        <li class="note-item">
+            <div class="note-details">
+               
+                <p class="note-title">{{ note.title }} - {{ note.subject }}</p>
+                <p class="text-muted">{{ note.uploaded_at|date:"d M Y"}}</p>
+ 
+                <p class="note-desc">{{ note.description }}</p>
+            </div>
+            
+            <a href="{% url 'note_detail' note.pk %}" class="download-button">Download</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    {% comment %} <button type="button" class="btn btn-info">Info</button>
+    <button type="button" class="btn btn-light">Light</button> {% endcomment %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if notes.has_previous %}
+                <a href="?page=1" class="btn btn-outline-secondary">&laquo; first</a>
+        
+                <a href="?page={{ notes.previous_page_number }}" class="btn btn-outline-secondary">previous</a>
+            {% endif %}
+    
+            <span class="current btn btn-outline-success">
+                Page {{ notes.number }} of {{ notes.paginator.num_pages }}.
+            </span>
+    
+            {% if notes.has_next %}
+                <a href="?page={{ notes.next_page_number }}" class="btn btn-outline-secondary">next</a>
+                <a href="?page={{ notes.paginator.num_pages }}" class="btn btn-outline-secondary">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+
+
+
+</div>
+
+{% endblock content %}

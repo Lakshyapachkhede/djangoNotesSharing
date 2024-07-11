@@ -1,0 +1,43 @@
+
+body {
+    font-family: Arial, sans-serif;
+
+}
+.note-list {
+    list-style-type: none;
+    padding: 0;
+}
+.note-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.note-details {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+.note-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+.note-desc {
+    font-size: 14px;
+    color: #555;
+}
+.download-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.download-button:hover {
+    background-color: #45a049;
+}
+
