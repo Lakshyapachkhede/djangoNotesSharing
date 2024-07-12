@@ -20,9 +20,7 @@
     {% endfor %}
     </ul>
 
-    {% comment %} <button type="button" class="btn btn-info">Info</button>
-    <button type="button" class="btn btn-light">Light</button> {% endcomment %}
-
+{% if notes.paginator.num_pages > 1 %}
     <div class="pagination">
         <span class="step-links">
             {% if notes.has_previous %}
@@ -41,7 +39,7 @@
             {% endif %}
         </span>
     </div>
-
+    {% endif %}
 
 
 
