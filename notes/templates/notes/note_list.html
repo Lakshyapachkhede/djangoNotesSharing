@@ -1,15 +1,28 @@
 {% extends "notes/base.html" %}
+{% load static %}
 
 {% block content %}
 
 <div class="container my-3">
     <h1> {{ heading }} </h1>
+
+    {% if notes|length == 0 %}
+    <h2>No results found </h2>
+    <p>Try searching for</p>
+    <div class="d-flex">
+        <a class="btn btn-link" href="?q=pyq">PYQ</a>
+        <a class="btn btn-link" href="?q=imp">IMP</a>
+        <a class="btn btn-link" href="?q=notes">notes</a>
+    </div>
+
+    {% endif %}
+
     <ul class="note-list">
     {% for note in notes %}
         <li class="note-item">
             <div class="note-details">
                
-                <p class="note-title">{{ note.title }} - {{ note.subject }}</p>
+                <p class="note-title" data-note-id="{{note.pk}}" data-note-file="{{ note.file.url }}"style="cursor: pointer;">{{ note.title }} - {{ note.subject }}</p>
                 <p class="text-muted">{{ note.uploaded_at|date:"d M Y"}}</p>
  
                 <p class="note-desc">{{ note.description }}</p>
@@ -24,9 +37,9 @@
     <div class="pagination">
         <span class="step-links">
             {% if notes.has_previous %}
-                <a href="?page=1" class="btn btn-outline-secondary">&laquo; first</a>
+                <a href="?{% if query %}{{query}}&{% endif %}page=1" class="btn btn-outline-secondary">&laquo; first</a>
         
-                <a href="?page={{ notes.previous_page_number }}" class="btn btn-outline-secondary">previous</a>
+                <a href="?{% if query %}{{query}}&{% endif %}page={{ notes.previous_page_number }}" class="btn btn-outline-secondary">previous</a>
             {% endif %}
     
             <span class="current btn btn-outline-success">
@@ -34,15 +47,35 @@
             </span>
     
             {% if notes.has_next %}
-                <a href="?page={{ notes.next_page_number }}" class="btn btn-outline-secondary">next</a>
-                <a href="?page={{ notes.paginator.num_pages }}" class="btn btn-outline-secondary">last &raquo;</a>
+                <a href="?{% if query %}{{query}}&{% endif %}page={{ notes.next_page_number }}" class="btn btn-outline-secondary">next</a>
+                <a href="?{% if query %}{{query}}&{% endif %}page={{ notes.paginator.num_pages }}" class="btn btn-outline-secondary">last &raquo;</a>
             {% endif %}
         </span>
     </div>
     {% endif %}
-
-
-
 </div>
 
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modalLabel">Preview</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <embed src="" width="100%" height="500px" type="application/pdf" id="pdfEmbed">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="" type="button" class="btn btn-primary" id="modalDownloadBtn">Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="{% static "notes/modal.js" %}" type="text/javascript"></script>
 {% endblock content %}
