@@ -23,12 +23,13 @@
             <div class="note-details">
                
                 <p class="note-title" data-note-id="{{note.pk}}" data-note-file="{{ note.file.url }}"style="cursor: pointer;">{{ note.title }} - {{ note.subject }}</p>
-                <p class="text-muted">{{ note.uploaded_at|date:"d M Y"}}</p>
- 
-                <p class="note-desc">{{ note.description }}</p>
+                <p class="note-desc my-0">{{ note.uploaded_at|date:"d M Y"}}</p>
+                <p class="note-desc my-0 mb-2">Total Downloads {{ note.total_downloads }}</p>
+                <p class="note-desc my-0">{{ note.description }}</p>
             </div>
-            
+
             <a href="{% url 'note_detail' note.pk %}" class="download-button">Download</a>
+
         </li>
     {% endfor %}
     </ul>
@@ -37,9 +38,9 @@
     <div class="pagination">
         <span class="step-links">
             {% if notes.has_previous %}
-                <a href="?{% if query %}{{query}}&{% endif %}page=1" class="btn btn-outline-secondary">&laquo; first</a>
+                <a href="?{% if query %}q={{query}}&{% endif %}page=1" class="btn btn-outline-secondary">&laquo; first</a>
         
-                <a href="?{% if query %}{{query}}&{% endif %}page={{ notes.previous_page_number }}" class="btn btn-outline-secondary">previous</a>
+                <a href="?{% if query %}q={{query}}&{% endif %}page={{ notes.previous_page_number }}" class="btn btn-outline-secondary">previous</a>
             {% endif %}
     
             <span class="current btn btn-outline-success">
@@ -47,8 +48,8 @@
             </span>
     
             {% if notes.has_next %}
-                <a href="?{% if query %}{{query}}&{% endif %}page={{ notes.next_page_number }}" class="btn btn-outline-secondary">next</a>
-                <a href="?{% if query %}{{query}}&{% endif %}page={{ notes.paginator.num_pages }}" class="btn btn-outline-secondary">last &raquo;</a>
+                <a href="?{% if query %}q={{query}}&{% endif %}page={{ notes.next_page_number }}" class="btn btn-outline-secondary">next</a>
+                <a href="?{% if query %}q={{query}}&{% endif %}page={{ notes.paginator.num_pages }}" class="btn btn-outline-secondary">last &raquo;</a>
             {% endif %}
         </span>
     </div>

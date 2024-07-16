@@ -40,6 +40,8 @@ def note_detail(request, pk):
     note = get_object_or_404(Note, pk=pk)
     response = HttpResponse(note.file, content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="{note.file.name}"'
+    note.total_downlods += 1
+    note.save()
     return response
 
 

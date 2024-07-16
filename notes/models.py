@@ -18,6 +18,7 @@ class Note(models.Model):
     file = models.FileField(upload_to='notes/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     subject = models.ForeignKey(Subject, related_name='notes', on_delete=models.CASCADE,null=True)
+    total_downloads = models.IntegerField(default=0)
 
 
     def __str__(self):
