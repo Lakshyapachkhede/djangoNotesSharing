@@ -96,3 +96,18 @@ def contact_view(request):
 
         
     return render(request, 'notes/contact.html', {'form': form, 'heading':'Contact Us', 'title':'Contact iNotes'})
+
+
+def robots_txt(request):
+    lines = [
+        "User-agent: *",
+        "Disallow: /admin/",
+        "Disallow: /api/",
+        "Disallow: /subjects/",
+        "Disallow: /search/",
+        "Disallow: /contact/",
+        "Allow: /static/",
+        "",
+        "Sitemap: https://pachkhedelakshya.pythonanywhere.com/sitemap.xml"
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")

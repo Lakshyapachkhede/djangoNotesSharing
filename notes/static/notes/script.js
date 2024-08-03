@@ -4,18 +4,16 @@ document.addEventListener('DOMContentLoaded', function(){
     .then(data =>{
         const subjectsDropDown = document.getElementById("subjectsDropDown");
         subjectsDropDown.innerHTML = ''
-
+        const mainLinks = document.getElementById('main-links');
         data.forEach(subject => {
             const listItem = document.createElement('li');
             const link = document.createElement('a');
             link.className = 'dropdown-item';
             link.href = `/subjects/${subject.id}`;
             link.textContent = subject.name;
-
             listItem.appendChild(link);
-
             subjectsDropDown.appendChild(listItem);
-
+        
         });
 
 

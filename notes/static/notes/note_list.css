@@ -41,3 +41,23 @@ body {
 .download-button:hover {
     background-color: #45a049;
 }
+
+
+.main-link{
+    border: 2px solid #56ab2f;
+    background: #4CAF50;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    margin: 2px 2px;
+    white-space: nowrap;
+
+
+}
+.main-links{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}

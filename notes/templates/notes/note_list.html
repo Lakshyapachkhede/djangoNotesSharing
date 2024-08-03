@@ -6,17 +6,26 @@
 <div class="container my-3">
     <h1> {{ heading }} </h1>
 
-    {% if notes|length == 0 %}
-    <h2>No results found </h2>
-    <p>Try searching for</p>
-    <div class="d-flex">
-        <a class="btn btn-link" href="?q=pyq">PYQ</a>
-        <a class="btn btn-link" href="?q=imp">IMP</a>
-        <a class="btn btn-link" href="?q=notes">notes</a>
-    </div>
 
-    {% endif %}
+  <div class="my-2 mb-2" id="main-links">
+    <a href="/subjects/3" class="main-link">Physics</a>
+    <a href="/subjects/2" class="main-link">Maths</a>
+    <a href="/subjects/1" class="main-link">FEEE</a>
+    <a href="/subjects/4" class="main-link">Mechanics</a>
+    <a href="/subjects/5" class="main-link">ITS</a>
 
+  </div>
+
+  {% if notes|length == 0 %}
+  <h2>No results found </h2>
+  <p>Try searching for</p>
+  <div class="d-flex">
+      <a class="btn btn-link" href="?q=pyq">PYQ</a>
+      <a class="btn btn-link" href="?q=imp">IMP</a>
+      <a class="btn btn-link" href="?q=notes">notes</a>
+  </div>
+
+  {% endif %}
     <ul class="note-list">
     {% for note in notes %}
         <li class="note-item">
